@@ -22,21 +22,29 @@ void	print_tlist(t_list *heap)
 	}
 }
 
-int	main(int ac, char *av[])
+int	verif_arg(char *arg)
 {
-	t_list	*heap_a;
+	if (ft_strncmp(arg, ft_itoa(ft_atoi(arg)), ft_strlen(arg)) != 0)
+	{
+		return (1);
+	}
+	return (0);
+}
+
+int	main_bis(int argc, char **argv, t_list *heap_a)
+{
 	t_list	*heap_b;
 
-	if (ac < 2)
-		return (EXIT_SUCCESS);
 	heap_a = NULL;
-	heap_a = create_list(ac, av, NULL);
+	heap_a = create_list(argc, argv, NULL);
 	if (heap_a == NULL)
 	{
 		ft_printf("error");
 		return (EXIT_FAILURE);
 	}
 	heap_b = NULL;
+	if (ft_lstsize(heap_a) == 1)
+		return (verif_arg(argv[1]));
 	if (ft_lstsize(heap_a) == 2)
 	{
 		if (heap_a->index > heap_a->next->index)
@@ -48,4 +56,24 @@ int	main(int ac, char *av[])
 		algo_six(&heap_a, &heap_b);
 	else
 		pseudo_radix(&heap_a, &heap_b);
+	return (0);
+}
+
+int main(int argc, char **argv)
+{
+	int	i;
+	
+	i = 1;
+	if (argc < 2)
+		return (EXIT_SUCCESS);
+	while ((i < argc - 1))
+	{
+		if (ft_atoi(argv[i]) < ft_atoi(argv[i + 1]))
+			i++;
+		else
+			break;
+	}
+	if ((i != argc - 1) || argc == 2)
+		main_bis(argc, argv, NULL);
+	return (0);
 }
