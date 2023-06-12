@@ -59,10 +59,10 @@ int	main_bis(int argc, char **argv, t_list *heap_a)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int	i;
-	
+
 	i = 1;
 	if (argc < 2)
 		return (EXIT_SUCCESS);
@@ -71,7 +71,7 @@ int main(int argc, char **argv)
 		if (ft_atoi(argv[i]) < ft_atoi(argv[i + 1]))
 			i++;
 		else
-			break;
+			break ;
 	}
 	if ((i != argc - 1) || argc == 2)
 		main_bis(argc, argv, NULL);

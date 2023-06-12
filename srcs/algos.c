@@ -103,4 +103,3 @@ void	algo_trois(t_list **heap)
 		}
 	}
 }
-
